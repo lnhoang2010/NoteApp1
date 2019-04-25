@@ -6,7 +6,10 @@ export const actionsType = {
     RENDER_DATA_FROM_SAGA: 'RENDER_DATA_FROM_SAGA',
     GET_NEWS_DATA: "GET_NEWS_DATA",
     RENDER_NEWS_DATA: "RENDER_NEWS_DATA",
-    CHANGE_TAB_COLOR: 'CHANGE_TAB_COLOR'
+    CHANGE_TAB_COLOR: 'CHANGE_TAB_COLOR',
+    CHANGE_HEADER1_STATE: 'CHANGE_HEADER1_STATE',
+    CHOOSE_ALL: 'CHOOSE_ALL',
+    LOAD_SAVED_DATA: "LOAD_SAVED_DATA"
 } 
 
 export function addData(text){
@@ -21,22 +24,18 @@ export function deleteData(index){
     return {type: actionsType.DELETE_DATA, index}
 }
 
-export function sagaGetData(){
-    return {type: actionsType.SAGA_GET_DATA}
+export function changeTabColor(index){
+    return {type: actionsType.CHANGE_TAB_COLOR, index}
 }
 
-export function renderData(data){
-    return {type: actionsType.RENDER_DATA_FROM_SAGA, data}
+export function changeHeader1State(){
+    return {type: actionsType.CHANGE_HEADER1_STATE}
 }
 
-export function getNewsData(){
-    return {type: actionsType.GET_NEWS_DATA}
+export function chooseAll(){
+    return {type: actionsType.CHOOSE_ALL}
 }
 
-export function renderNewsData(data){
-    return {type: actionsType.RENDER_NEWS_DATA, data}
-}
-
-export function changeTabColor(textColor, tabColor, index){
-    return {type: actionsType.CHANGE_TAB_COLOR, tabColor, textColor, index}
+export function loadSavedData(data){
+    return {type: actionsType.LOAD_SAVED_DATA, data}
 }

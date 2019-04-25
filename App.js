@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Provider} from 'react-redux';
 import Store from './src/store';
-import Screen1 from './src/screen/Screen1'
-import Screen2 from './src/screen/Screen2'
+import Screen1 from './src/View/Screen1'
+import Screen2 from './src/View/Screen2'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 export default class App extends Component {
