@@ -11,7 +11,7 @@ function* getDataSaga(){
         alert("Network error")
         return
     }
-    // alert(data)
+
     yield put(renderData(data.movies))
 }
 

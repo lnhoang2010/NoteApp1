@@ -21,6 +21,12 @@ class Screen1 extends Component {
         };
     };
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.data!==this.props.data){
+            this.modifyTitleScreen1(nextProps.data);
+        }
+      }
+
     componentDidMount() {
         this.props.navigation.setParams({ modifyTitleScreen1: () => this.modifyTitleScreen1() })
         this.props.navigation.setParams({ onChooseAllClicked: () => this.onChooseAllClicked() })
@@ -29,10 +35,12 @@ class Screen1 extends Component {
         Screen1Helper.loadData()
     }
 
-    modifyTitleScreen1 = () => {
+    modifyTitleScreen1 = (data = this.props.data) => {
+        
         var selectedNote = 0;
-        for (i = 0; i < this.props.data.length; i++) {
-            if (this.props.data[i].choosen) {
+        for (i = 0; i < data.length; i++) {
+            console.log("this.props.data[i].choosen", data[i].choosen);
+            if (data[i].choosen) {
                 selectedNote++;
             }
         }
@@ -49,7 +57,11 @@ class Screen1 extends Component {
     }
 
     onChooseAllClicked = () => {
-        Screen1Helper.onChooseAllClicked(this.props.data)
+        Screen1Helper.onChooseAllClicked(this.props.data) 
+    }
+
+    onTabLongPressed = (index) => {
+        Screen1Helper.onLongPressed(index, this.props.data)
     }
 
     onDeleteClicked = () => {
@@ -73,11 +85,6 @@ class Screen1 extends Component {
         )
     }
 
-    onTabLongPressed = (index) => {
-        Screen1Helper.onLongPressed(index, this.props.data)
-        this.modifyTitleScreen1();
-    }
-
     onPressEditElement = (i) => {
         const { navigate } = this.props.navigation;
         var titleTrimmed = ""
@@ -89,15 +96,19 @@ class Screen1 extends Component {
             titleTrimmed = this.props.data[i].text
         }
 
+        this.resetView()
         navigate('Screen2', { index: i, title: titleTrimmed })
     }
 
     onCreateButtonClicked = () => {
         const { navigate } = this.props.navigation;
         navigate('Screen2')
-        this.props.navigation.setParams({ title: 'Notepad' })
+        this.resetView()
+    }
 
+    resetView = () => {
         Screen1Helper.onCreateClicked(this.props.headerState, this.props.data)
+        this.props.navigation.setParams({ title: 'Notepad' })
     }
 
     render() {
@@ -110,7 +121,6 @@ class Screen1 extends Component {
                         data={item}
                         index={index}
                         onPressEdit={(i) => this.onPressEditElement(i)}
-                        onMenuButtonClicked={() => this.onMenuButtonClicked()}
                         onTabLongPressed={(i) => this.onTabLongPressed(i)}
                     />}
                 />

@@ -13,8 +13,8 @@ const addData = (state = initialState, action) => {
             return Object.assign({}, state.data, { data: newData })
 
         case actionsType.EDIT_DATA:
-            let newObject2 = { text: action.text, tabColor: 'white', choosen: false }
-            newData[action.index] = newObject2;
+            let newObject1 = { text: action.text, tabColor: 'white', choosen: false }
+            newData[action.index] = newObject1;
             return Object.assign({}, state.data, { data: newData })
 
         case actionsType.DELETE_DATA:
@@ -58,14 +58,14 @@ const addData = (state = initialState, action) => {
             for (let i = 0; i < newData.length; i++) {
                 newData[i] = { text: newData[i].text, tabColor: '#33b4e5', choosen: true }
             }
-            return Object.assign({}, state.data, { data: newData })
+            return Object.assign({}, state, { data: newData })
 
         case actionsType.LOAD_SAVED_DATA:
             var newData1 = []
             if (action.data) {
                 for(i = 0; i < action.data.length; i++){
-                    var newObject1 = {text: action.data[i].text, tabColor: 'white', 'choosen': false};
-                    newData1.push(newObject1)
+                    var newObject2 = {text: action.data[i].text, tabColor: 'white', 'choosen': false};
+                    newData1.push(newObject2)
                 }
                 return Object.assign({}, state, {data: newData1})
             }

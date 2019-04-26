@@ -1,5 +1,5 @@
 import Store from '../store'
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Alert } from 'react-native';
 import { changeHeader1State, changeTabColor, chooseAll, deleteData, loadSavedData } from '../actionType/action'
 
 let currentValue
@@ -35,12 +35,19 @@ class Screen1Helper {
 
     static onLongPressed(index, data){
         var needToChangeHeader = true
-
+        var choosenNote = 0
+        
         for (let i = 0; i < data.length; i++) {
             if (data[i].choosen) {
                 needToChangeHeader = false;
+                choosenNote ++
             }
         }
+        
+        if(choosenNote == 1 && data[index].choosen){
+            Store.dispatch(changeHeader1State())
+        }
+
         Store.dispatch(changeTabColor(index))
 
         if (needToChangeHeader) {
