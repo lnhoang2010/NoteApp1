@@ -74,10 +74,13 @@ class Screen1Helper {
         }
     }
 
-    static onChooseAllClicked(data){
+    static onChooseAllClicked(data, state){
         if(data.length){
             Store.dispatch(chooseAll());
-            Store.dispatch(changeHeader1State())
+            
+            if(!state.showDeleteButton){
+                Store.dispatch(changeHeader1State())
+            }
         }
         else{
             Alert.alert(

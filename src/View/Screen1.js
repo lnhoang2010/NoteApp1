@@ -39,7 +39,6 @@ class Screen1 extends Component {
         
         var selectedNote = 0;
         for (i = 0; i < data.length; i++) {
-            console.log("this.props.data[i].choosen", data[i].choosen);
             if (data[i].choosen) {
                 selectedNote++;
             }
@@ -57,7 +56,7 @@ class Screen1 extends Component {
     }
 
     onChooseAllClicked = () => {
-        Screen1Helper.onChooseAllClicked(this.props.data) 
+        Screen1Helper.onChooseAllClicked(this.props.data, this.props.headerState) 
     }
 
     onTabLongPressed = (index) => {
