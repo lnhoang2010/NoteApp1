@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import HeaderScreen2 from '../component/header/headerScreen2'
 import Screen2Helper from '../model/Screen2'
@@ -42,7 +42,7 @@ class Screen2 extends Component {
       Screen2Helper.onSaveClicked(this.props.navigation.state.params.index, this.state.text)
     }
     else {
-      alert("Please enter something")
+      Alert.alert("Error","Please enter something")
     }
   }
 
@@ -52,6 +52,7 @@ class Screen2 extends Component {
       <View style={{ flex: 1 }}>
 
         <TextInput
+          multiline = {true}
           style={{ flex: 1, textAlignVertical: 'top' }}
           maxLength={60}
           value={this.state.text}

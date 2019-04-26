@@ -10,12 +10,12 @@ const addData = (state = initialState, action) => {
         case actionsType.ADD_DATA:
             let newObject = { text: action.text, tabColor: 'white', choosen: false }
             newData.push(newObject)
-            return Object.assign({}, state.data, { data: newData })
+            return Object.assign({}, state, { data: newData })
 
         case actionsType.EDIT_DATA:
             let newObject1 = { text: action.text, tabColor: 'white', choosen: false }
             newData[action.index] = newObject1;
-            return Object.assign({}, state.data, { data: newData })
+            return Object.assign({}, state, { data: newData })
 
         case actionsType.DELETE_DATA:
             var newArray = []
@@ -25,11 +25,11 @@ const addData = (state = initialState, action) => {
                         newArray.push(newData[i])
                     }
                 }
-                return Object.assign({}, state.data, { data: newArray })
+                return Object.assign({}, state, { data: newArray })
             }
             else {
                 newData.splice(action.index, 1);
-                return Object.assign({}, state.data, { data: newData })
+                return Object.assign({}, state, { data: newData })
             }
 
 
@@ -52,7 +52,7 @@ const addData = (state = initialState, action) => {
                         newData[action.index] = { text: newData[action.index].text, tabColor: 'white', choosen: !state.data[action.index].choosen }
                     }
                 }
-            return Object.assign({}, state.data, { data: newData })
+            return Object.assign({}, state, { data: newData })
 
         case actionsType.CHOOSE_ALL:
             for (let i = 0; i < newData.length; i++) {
@@ -70,7 +70,7 @@ const addData = (state = initialState, action) => {
                 return Object.assign({}, state, {data: newData1})
             }
             else {
-                return Object.assign({}, state.data, {data: []})
+                return Object.assign({}, state, {data: []})
             }
 
         default:

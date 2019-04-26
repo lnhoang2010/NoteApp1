@@ -7,10 +7,6 @@ class NoteView extends Component{
         super(props);
     }
 
-    onTabLongPressed(i){
-        this.props.onTabLongPressed(i)
-    }
-
     render(){
 
         return(
@@ -19,7 +15,7 @@ class NoteView extends Component{
                 <TouchableOpacity
                     style = {{flex:1, flexDirection: 'row'}}
                     onPress = {() => this.props.onPressEdit(this.props.index)}
-                    onLongPress = {() => this.onTabLongPressed(this.props.index)}>
+                    onLongPress = {() => this.props.onTabLongPressed(this.props.index)}>
 
                     <Text style = {{alignSelf: "center", left: 10, color: 'black'}}>
                         {this.props.data.text}
