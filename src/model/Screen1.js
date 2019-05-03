@@ -1,6 +1,6 @@
 import Store from '../store'
 import { AsyncStorage, Alert } from 'react-native';
-import { changeHeader1State, changeTabColor, chooseAll, deleteData, loadSavedData } from '../actionType/action'
+import { changeHeader1State, changeTabColor, chooseAll, deleteData, loadSavedData, getNewsData, changeLoadingState } from '../actionType/action'
 
 let currentValue
 
@@ -101,6 +101,11 @@ class Screen1Helper {
 
         Store.dispatch(deleteData(needToDelete));
         Store.dispatch(changeHeader1State())
+    }
+
+    static onLoadClicked(){
+        Store.dispatch(getNewsData())
+        Store.dispatch(changeLoadingState())
     }
 }
 

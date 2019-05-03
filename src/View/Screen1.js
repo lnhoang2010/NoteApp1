@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import NoteView from '../component/noteView'
 import HeaderScreen1 from '../component/header/headerScreen1'
 import Screen1Helper from '../model/Screen1'
+import Loading from '../component/Loading'
 
 class Screen1 extends Component {
     constructor(props) {
@@ -84,6 +85,10 @@ class Screen1 extends Component {
         )
     }
 
+    onLoadClicked = () => {
+        Screen1Helper.onLoadClicked()
+    }
+
     onPressEditElement = (i) => {
         const { navigate } = this.props.navigation;
         var titleTrimmed = ""
@@ -125,7 +130,7 @@ class Screen1 extends Component {
                 />
 
                 <TouchableOpacity
-                    style={{ position: "absolute", width: 60, height: 60, bottom: 30, right: 30 }}
+                    style={{ position: "absolute", width: 60, height: 60, bottom: 30, right: 20 }}
                     onPress={() => { this.onCreateButtonClicked() }}>
 
                     <Image
@@ -133,6 +138,19 @@ class Screen1 extends Component {
                         source={{ uri: "https://cdn3.iconfinder.com/data/icons/rest/30/add_order-512.png" }}
                     />
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={{ position: "absolute", width: 60, height: 60, bottom: 30, right: 100 }}
+                    onPress={() => { this.onLoadClicked() }}
+                    >
+
+                    <Image
+                        style={{ width: "100%", height: "100%" }}
+                        source={{ uri: "https://secure.webtoolhub.com/static/resources/icons/set51/2b48e1bc.png" }}
+                    />
+                </TouchableOpacity>
+
+                <Loading/>
             </View>
         )
     }

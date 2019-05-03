@@ -1,5 +1,5 @@
-import { actionsType, renderNewsData, renderData} from '../actionType/action'
-import {put , takeEvery, call, fork, all} from 'redux-saga/effects'
+import { actionsType, renderNewsData} from '../actionType/action'
+import {put , takeEvery, call, fork} from 'redux-saga/effects'
 import {post} from '../Helper/HTTPHelper'
 
 function* getNewsData(){
@@ -12,13 +12,11 @@ function* getNewsData(){
         return
     }
     
-    // alert(data)
-
     yield put(renderNewsData(data.articles))
 }
 
 function* action2(){
-    yield takeEvery(actionsType.GET_NEWS_DATA, getNewsData)
+    yield takeEvery(actionsType.SAGA_GET_DATA, getNewsData)
 }
 
 export default fork(action2)

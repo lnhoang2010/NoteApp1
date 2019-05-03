@@ -1,4 +1,5 @@
 import { actionsType } from '../actionType/action';
+
 const initialState = {
     data: [],
 }
@@ -34,24 +35,24 @@ const addData = (state = initialState, action) => {
 
 
         case actionsType.CHANGE_TAB_COLOR:
-                if (action.index.length) {
-                    for (let i = 0; i < action.index.length; i++) {
-                        if (newData[action.index[i]].tabColor == 'white') {
-                            newData[action.index[i]] = { text: newData[action.index[i]].text, tabColor: '#33b4e5', choosen: !state.data[action.index[i]].choosen }
-                        }
-                        else {
-                            newData[action.index[i]] = { text: newData[action.index[i]].text, tabColor: 'white', choosen: !state.data[action.index[i]].choosen }
-                        }
-                    }
-                }
-                else {
-                    if (newData[action.index].tabColor == 'white') {
-                        newData[action.index] = { text: newData[action.index].text, tabColor: '#33b4e5', choosen: !state.data[action.index].choosen }
+            if (action.index.length) {
+                for (let i = 0; i < action.index.length; i++) {
+                    if (newData[action.index[i]].tabColor == 'white') {
+                        newData[action.index[i]] = { text: newData[action.index[i]].text, tabColor: '#33b4e5', choosen: !state.data[action.index[i]].choosen }
                     }
                     else {
-                        newData[action.index] = { text: newData[action.index].text, tabColor: 'white', choosen: !state.data[action.index].choosen }
+                        newData[action.index[i]] = { text: newData[action.index[i]].text, tabColor: 'white', choosen: !state.data[action.index[i]].choosen }
                     }
                 }
+            }
+            else {
+                if (newData[action.index].tabColor == 'white') {
+                    newData[action.index] = { text: newData[action.index].text, tabColor: '#33b4e5', choosen: !state.data[action.index].choosen }
+                }
+                else {
+                    newData[action.index] = { text: newData[action.index].text, tabColor: 'white', choosen: !state.data[action.index].choosen }
+                }
+            }
             return Object.assign({}, state, { data: newData })
 
         case actionsType.CHOOSE_ALL:
@@ -63,18 +64,25 @@ const addData = (state = initialState, action) => {
         case actionsType.LOAD_SAVED_DATA:
             var newData1 = []
             if (action.data) {
-                for(i = 0; i < action.data.length; i++){
-                    var newObject2 = {text: action.data[i].text, tabColor: 'white', 'choosen': false};
+                for (i = 0; i < action.data.length; i++) {
+                    var newObject2 = { text: action.data[i].text, tabColor: 'white', 'choosen': false };
                     newData1.push(newObject2)
                 }
-                return Object.assign({}, state, {data: newData1})
+                return Object.assign({}, state, { data: newData1 })
             }
             else {
-                return Object.assign({}, state, {data: []})
+                return Object.assign({}, state, { data: [] })
             }
 
         default:
             return state;
+
+        case actionsType.RENDER_NEWS_DATA:
+            for (let i = 0; i < action.data.length; i++) {
+                var newObject3 = {text: action.data[i].title, tabColor: 'white', choosen: false}
+                newData.push(newObject3)
+            }
+            return Object.assign({}, state, {data: newData})
     }
 }
 

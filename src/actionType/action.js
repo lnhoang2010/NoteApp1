@@ -9,7 +9,8 @@ export const actionsType = {
     CHANGE_TAB_COLOR: 'CHANGE_TAB_COLOR',
     CHANGE_HEADER1_STATE: 'CHANGE_HEADER1_STATE',
     CHOOSE_ALL: 'CHOOSE_ALL',
-    LOAD_SAVED_DATA: "LOAD_SAVED_DATA"
+    LOAD_SAVED_DATA: "LOAD_SAVED_DATA",
+    CHANGE_LOADING_STATE: 'CHANGE_LOADING_STATE'
 } 
 
 export function addData(text){
@@ -38,4 +39,16 @@ export function chooseAll(){
 
 export function loadSavedData(data){
     return {type: actionsType.LOAD_SAVED_DATA, data}
+}
+
+export function getNewsData(){
+    return {type: actionsType.GET_NEWS_DATA}
+}
+
+export function renderNewsData(data){
+    return {type: actionsType.RENDER_NEWS_DATA, data}
+}
+
+export function changeLoadingState(){
+    return {type: actionsType.CHANGE_LOADING_STATE}
 }

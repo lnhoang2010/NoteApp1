@@ -3,15 +3,13 @@ import { TouchableOpacity, View} from 'react-native'
 import { Icon } from 'react-native-elements'
 
 export default HeaderScreen2 = (props) =>{
-        const { onDeleteClicked, onSaveClicked, meter} = props;
+        // const { onDeleteClicked, onSaveClicked, meter} = props;
         return(
             <View style = {{flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingRight: 30}}>
                 <TouchableOpacity
                     style = {{height: 30, width: 30, alignSelf: 'center'}}
                     onPress = {()=> {
-                        if(!meter){
-                            onSaveClicked()
-                        }
+                        props.onSaveClicked()
                     }}>
                     <Icon
                         style = {{flex: 1}}
@@ -23,7 +21,7 @@ export default HeaderScreen2 = (props) =>{
 
                 <TouchableOpacity
                     style = {{height: 30, width: 30, alignSelf: 'center', left: 10}}
-                    onPress = {() => onDeleteClicked()}>
+                    onPress = {() => props.onDeleteClicked()}>
                     <Icon
                         style = {{flex: 1}}
                         name = 'delete'
